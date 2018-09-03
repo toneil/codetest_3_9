@@ -6,3 +6,13 @@ services:
       - "8080:8080"
     volumes:
       - ./api/app:/go/src/app
+    depends_on:
+      - postgres
+    links:
+      - postgres:dockerpostgres
+  postgres:
+    image: kamui/postgresql
+    environment:
+    - POSTGRESQL_DB=codetest
+    - POSTGRESQL_USER=tester
+    - POSTGRESQL_PASS=somepwd
